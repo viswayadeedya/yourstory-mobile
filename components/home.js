@@ -20,10 +20,23 @@ function HomeComponent(props) {
           style={styles.storyBoard}
           source={require('../assets/Storyboard-amico.png')}
         ></Image>
+        <View
+          style={{
+            backgroundColor: '#D1D1D1',
+            // paddingVertical: 25,
+            // marginVertical: 20,
+          }}
+        ></View>
+      </View>
+      <View
+        style={{
+          backgroundColor: '#D1D1D1',
+          paddingVertical: 25,
+          marginVertical: 20,
+        }}
+      >
         <Text style={styles.heading}>YourStory</Text>
         <Text style={styles.subHeading}>Trusted Book Publisher</Text>
-      </View>
-      <View>
         <Text style={styles.bestSellers}>BESTSELLERS</Text>
         <Text style={styles.discover}>Discover Something New You'll Love</Text>
       </View>
@@ -42,17 +55,24 @@ const styles = StyleSheet.create({
   storyBoard: {
     width: Dimensions.get('window').width / 1.5,
     height: Dimensions.get('window').height / 2.5,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   heading: {
+    paddingTop: 10,
     color: '#000',
     fontSize: 20,
     textAlign: 'left',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   subHeading: {
+    paddingVertical: 25,
     color: '#000',
     fontSize: 20,
+    textAlign: 'center',
+    borderBottomColor: '#1C658C',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
   },
   logoHeader: {
     alignItems: 'center',
@@ -70,11 +90,13 @@ const styles = StyleSheet.create({
     color: '#0c7494',
     fontSize: 30,
     textAlign: 'center',
-    paddingVertical: 45,
+    paddingTop: 20,
+    paddingBottom: 25,
   },
   discover: {
     fontSize: 17,
     textAlign: 'center',
+    paddingBottom: 25,
   },
 });
 
