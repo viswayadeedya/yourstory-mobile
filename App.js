@@ -8,19 +8,32 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+function AuthScreen() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Login"
+    >
+      <Stack.Screen name="Login" component={LoginComponent} />
+      <Stack.Screen name="Register" component={RegisterComponent} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
         screenOptions={{
           headerShown: false,
         }}
         initialRouteName="Login"
       >
-        <Stack.Screen name="Home" component={HomeComponent} />
-        <Stack.Screen name="Login" component={LoginComponent} />
-        <Stack.Screen name="Register" component={RegisterComponent} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Home" component={HomeComponent} />
+        <Drawer.Screen name="Auth" component={AuthScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
