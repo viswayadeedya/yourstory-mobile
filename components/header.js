@@ -1,15 +1,27 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Image, TouchableOpacity, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  Text,
+  View,
+} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons/faBars';
 
 function HeaderComponent(props) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <TouchableOpacity>
-        <FontAwesomeIcon size={24} icon={faBars} />
+        <Image
+          source={require('../assets/appstore.png')}
+          style={{
+            height: Dimensions.get('window').height / 20,
+            width: Dimensions.get('window').width / 12,
+          }}
+        ></Image>
       </TouchableOpacity>
       <Text style={styles.header}>YourStory</Text>
     </View>
@@ -18,14 +30,14 @@ function HeaderComponent(props) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 45,
-    paddingBottom: 10,
+    paddingTop: 27,
+    paddingBottom: 5,
     paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottomColor: '#0c7494',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderStyle: 'solid',
   },
   header: {
