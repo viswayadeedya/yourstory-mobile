@@ -9,11 +9,36 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
+import axiosConfig from '../axiosConfig';
+import { environment } from '../environment';
 
 function RegisterComponent(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
+  const url = 'users';
+
+  const signUpUser = (props) => {
+    setLoading(true);
+    axiosConfig
+      .post(`${url}/register`, {
+        email: email,
+        password: password,
+        username: username,
+      })
+      .then((response) => {
+        if (response.success) {
+          environment.token = response.message.token;
+          environment.user = response.message.user;
+          props.navigation.navigate('Home');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <View style={styles.container}>
@@ -30,7 +55,6 @@ function RegisterComponent(props) {
           style={styles.TextInput}
           placeholder="Username."
           placeholderTextColor="#fff"
-          secureTextEntry={true}
           onChangeText={(username) => setUsername(username)}
         />
       </View>
@@ -54,7 +78,10 @@ function RegisterComponent(props) {
         />
       </View>
 
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity
+        style={styles.loginBtn}
+        onPress={() => signUpUser(props)}
+      >
         <Text style={styles.loginText}>REGISTER</Text>
       </TouchableOpacity>
 
